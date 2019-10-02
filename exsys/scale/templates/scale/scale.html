@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content%}
+    {% comment %}
+        <div>
+            <p>Energy</p>
+            <form action="{% url "home" %}" method="post">
+                {% csrf_token %}
+                {{ energy_form.as_p }}
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+        <div>
+            <p>Machine</p>
+            <form action="{% url "home" %}" method="post">
+                {% csrf_token %}
+                {{ machine_form.as_p }}
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    {% endcomment %}
+    {% comment %}
+        {% for input in input_energy %}
+            <p class="item">
+                energie : {{ input.resource.name }}
+            </p>
+        {% endfor %}
+        {% for machine in machine %}
+            <p class="item">
+                machine : {{ machine.name }}
+            </p>
+        {% endfor %}
+    {% endcomment %}
+
+    <div>
+        <form action="{% url "home" %}" method="post">
+            {% csrf_token %}
+            {{ test_form.as_p }}
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+    <div>
+
+    <div>
+        <p>Result</p>
+        {% comment %}
+        {% for output in output_energy %}
+            <p class="item">
+            resultat : {{ output.value|stringformat:"E" }} {{ output.unit }}
+            </p>
+        {% endfor %}
+        {% endcomment %}
+        output_energy
+    </div>
+{% endblock %}
+
