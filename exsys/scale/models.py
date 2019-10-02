@@ -263,7 +263,7 @@ class HeightScale(models.Model):
     height_unit = models.ForeignKey('Unit',
                                     null=False,
                                     on_delete=models.CASCADE,
-                                    related_name="HeightScale_height_uni")
+                                    related_name="HeightScale_height_unit")
     def __def__(self):
         return ("{} : {} {}".format(self.name,
                                     self.height,
@@ -271,3 +271,16 @@ class HeightScale(models.Model):
     def __str__(self):
         return self.__def__()
 
+## Try to make a model that will automatise
+## the form for scale.html
+#class Test(models.mOdel):
+#    energy = models.ForeignKey('Energy')
+#    unit = forms.ChoiceField(widget=forms.RadioSelect)
+#    value = forms.FloatField()
+#    name = forms.ChoiceField(widget=forms.RadioSelect)
+#    def __def__(self):
+#        return ("{} : {} {}".format(self.name,
+#                                    self.height,
+#                                    self.height_unit))
+#    def __str__(self):
+#        return self.__def__()

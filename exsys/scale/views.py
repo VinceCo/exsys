@@ -7,13 +7,16 @@ from django.forms import ChoiceField
 from django.forms import RadioSelect
 from . import models
 from . import forms
+from . import methods
 
 
 def home(request):
     if (request.method == 'POST'):
-        # Voir comment avoir accès au formulaire via le post.
-        # Est ce que c'est via un dictionnaire ou non ?
-        form_test = forms.TestForm(request.POST)
+
+#        # Voir comment avoir accès au formulaire via le post.
+#        # Est ce que c'est via un dictionnaire ou non ?
+##        test_form = prerare_form_test()
+        test_form = forms.TestForm(request.POST)
         print('request.POST', request.POST)
         print('request.content_type', request.content_type)
         print('request.path', request.path)
@@ -21,7 +24,29 @@ def home(request):
         print('request.content_type', request.content_type)
         print('request.scheme', request.scheme)
         print('request.get_full_path_info()', request.get_full_path_info())
-        print('form_test', form_test)
+        print('test_form', test_form)
+        if test_form.is_valid():
+            print("yoooooolooooo")
+            """
+            Il faut ici que je récupère les données pour les envoyer
+            à la bonne méthode.
+            Je dois avoir la quantité d'énergie final après quelle soit dissipé
+            par la machine ET son équivalent en energie musculaire humaine.
+            """
+            machine_output_energy = methods.machine_output_energy(
+                test_form.cleaned_data['value'],
+                test_form.cleaned_data['efficiency'])
+
+            height_potential = methods.energy_into_height_potential(
+                machine_output_energy)
+
+            # Il faudra choisir les équivalances.
+            height_equivalent = methods.height_into_height_scale(
+                height_potential, 'Tour Eiffel')
+
+            output = height_equivalent
+
+
 #        machine_form = forms.EnergyForm(request.POST)
 #        if energy_form.is_valid():
             # Il faut ici que je récupère les données pour les envoyer 
@@ -45,49 +70,85 @@ def home(request):
         # #        energy_form = EnergyFormSet()
         # #        energy_form = EnergyFormSet(initial=initial_energy)
     else:
-        unit_set =  models.Unit.objects.filter(
-            physical_quantity__physical_quantity="energy")
-        unit_list = []
-        for unit in unit_set:
-            tuple_unit = unit.id, unit.unit
-            unit_list.append(tuple_unit)
-
-        print('unit_list', unit_list)
-        energy_set = models.Energy.objects.all()
-        resource_list = []
-        for energy in energy_set:
-            resource_list.append((energy.id, energy.resource.name))
-        print('resource_list', resource_list)
-
-#        energy_form = forms.EnergyForm()
-#        energy_form.fields['resource'] = ChoiceField(widget=RadioSelect,
-#                                                     choices=resource_list)
-#        energy_form.fields['unit'] = ChoiceField(widget=RadioSelect,
-#                                                 choices=unit_list)
-
-        machine_set = models.Machine.objects.all()
-        machine_list = []
-        for machine in machine_set:
-            machine_list.append((machine.id, machine.name))
-        machine_form = forms.MachineForm()
-#        machine_form.fields['name'] = ChoiceField(widget=RadioSelect,
-#                                                  choices=machine_list)
-
         test_form = forms.TestForm()
-        test_form.fields['energy'] = ChoiceField(widget=RadioSelect,
-                                                 choices=resource_list)
-        test_form.fields['unit'] = ChoiceField(widget=RadioSelect,
-                                               choices=unit_list)
+#        test_form = prerare_test_form()
 
-        test_form.fields['name'] = ChoiceField(widget=RadioSelect,
-                                               choices=machine_list)
-        value = 42
-        input_energy = models.Energy.objects.order_by('resource__name')
-        machine = models.Machine.objects.all()
-        output_energy = 42
+#        unit_set =  models.Unit.objects.filter(
+#            physical_quantity__physical_quantity="energy")
+#        unit_list = []
+#        for unit in unit_set:
+#            tuple_unit = unit.id, unit.unit
+#            unit_list.append(tuple_unit)
+#
+#        print('unit_list', unit_list)
+#        energy_set = models.Energy.objects.all()
+#        resource_list = []
+#        for energy in energy_set:
+#            resource_list.append((energy.id, energy.resource.name))
+#        print('resource_list', resource_list)
+#
+##        energy_form = forms.EnergyForm()
+##        energy_form.fields['resource'] = ChoiceField(widget=RadioSelect,
+##                                                     choices=resource_list)
+##        energy_form.fields['unit'] = ChoiceField(widget=RadioSelect,
+##                                                 choices=unit_list)
+#
+#        machine_set = models.Machine.objects.all()
+#        machine_list = []
+#        for machine in machine_set:
+#            machine_list.append((machine.id, machine.name))
+#        machine_form = forms.MachineForm()
+##        machine_form.fields['name'] = ChoiceField(widget=RadioSelect,
+##                                                  choices=machine_list)
+#
+#        test_form = forms.TestForm()
+#        test_form.fields['energy'] = ChoiceField(widget=RadioSelect,
+#                                                 choices=resource_list)
+#        test_form.fields['unit'] = ChoiceField(widget=RadioSelect,
+#                                               choices=unit_list)
+#
+#        test_form.fields['name'] = ChoiceField(widget=RadioSelect,
+#                                               choices=machine_list)
+        output_energy = 0
 
     return render(request, 'scale/scale.html', locals())
 
+def prerare_test_form():
+    """
+    Prepare the test form.
+    """
+    print("Je suis dans prepare_test_form")
+
+    unit_set =  models.Unit.objects.filter(
+        physical_quantity__physical_quantity="energy")
+    unit_list = []
+    for unit in unit_set:
+        tuple_unit = unit.id, unit.unit
+        unit_list.append(tuple_unit)
+    print('unit_list', unit_list)
+
+    energy_set = models.Energy.objects.all()
+    resource_list = []
+    for energy in energy_set:
+        resource_list.append((energy.id, energy.resource.name))
+    print('resource_list', resource_list)
+
+    machine_set = models.Machine.objects.all()
+    machine_list = []
+    for machine in machine_set:
+        machine_list.append((machine.id, machine.name))
+    print('machine', machine_list)
+
+    test_form = forms.TestForm()
+    test_form.fields['energy'] = ChoiceField(widget=RadioSelect,
+                                             choices=resource_list)
+    test_form.fields['unit'] = ChoiceField(widget=RadioSelect,
+                                           choices=unit_list)
+
+    test_form.fields['name'] = ChoiceField(widget=RadioSelect,
+                                           choices=machine_list)
+    print("test_from : ", test_form)
+    return test_form
 
 def home_energy(request):
     # On gere le formulaire energy
@@ -239,5 +300,5 @@ def test(request):
     formset.fields['radio'] = ChoiceField(widget=RadioSelect, choices=CHOICES)
     return render(request, 'scale/test.html', locals())
 
-def machine_output_energy(input_energy, efficiency):
-    return input_energy * efficiency
+#def machine_output_energy(input_energy, efficiency):
+#    return input_energy * efficiency

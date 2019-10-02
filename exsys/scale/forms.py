@@ -34,7 +34,33 @@ class MachineForm(forms.Form):
 
 #CHOICES = [('1', 'First'),('2', 'Second')]
 class TestForm(forms.Form):
-    energy = forms.ChoiceField(widget=forms.RadioSelect)
-    unit = forms.ChoiceField(widget=forms.RadioSelect)
+    #energy_bis = forms.ModelChoiceField(queryset=models.Energy.objects.all(),
+    energy_bis = forms.ModelChoiceField(queryset=
+                                        models.Energy.resource.get_queryset(),
+                                        empty_label=None,
+                                        widget=forms.RadioSelect
+                                       )
+    unit_bis = forms.ModelChoiceField(
+        queryset=models.Unit.objects.filter(
+            physical_quantity__physical_quantity="energy"),
+        empty_label=None,
+        widget=forms.RadioSelect)
+
     value = forms.FloatField()
-    name = forms.ChoiceField(widget=forms.RadioSelect)
+
+    machine_bis = forms.ModelChoiceField(
+        queryset=models.Machine.objects.all(),
+        empty_label=None,
+        widget=forms.RadioSelect)
+
+    efficiency = forms.FloatField()
+
+    height_scale = forms.ModelChoiceField(
+        queryset=models.HeightScale.objects.all(),
+        empty_label=None,
+        widget=forms.RadioSelect)
+
+#    energy = forms.ChoiceField(widget=forms.RadioSelect)
+#    unit = forms.ChoiceField(widget=forms.RadioSelect)
+#    value = forms.FloatField()
+#    name = forms.ChoiceField(widget=forms.RadioSelect)

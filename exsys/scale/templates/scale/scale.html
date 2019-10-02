@@ -42,14 +42,9 @@
 
     <div>
         <p>Result</p>
-        {% comment %}
-        {% for output in output_energy %}
-            <p class="item">
-            resultat : {{ output.value|stringformat:"E" }} {{ output.unit }}
-            </p>
-        {% endfor %}
-        {% endcomment %}
-        output_energy
+        <p class="item">
+        resultat : {{ output|stringformat:"E" }} {{ output.unit }}
+        </p>
     </div>
 {% endblock %}
 
