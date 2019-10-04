@@ -18,8 +18,8 @@ def energy_into_height_potential(energy):
     height_equivalent = energy / (g * human)
     return height_equivalent
 
-def height_into_height_scale(height, scale_name):
-    height_scale = float(models.HeightScale.objects.get(name=scale_name).height)
+def height_into_height_scale(height, height_scale):
+    height_scale = float(height_scale.height)
     # Faire le round ?
     return height / height_scale
 
