@@ -429,6 +429,8 @@ unit_from_list = [
     models.Unit.objects.get(symbol="km"),
     models.Unit.objects.get(symbol="l/100km"),
     models.Unit.objects.get(symbol="m^3"),
+    models.Unit.objects.get(symbol="l"),
+    models.Unit.objects.get(symbol="J"),
 ]
 unit_to_list = [
     models.Unit.objects.get(symbol="W"),
@@ -440,6 +442,8 @@ unit_to_list = [
     models.Unit.objects.get(symbol="m"),
     models.Unit.objects.get(symbol="l/100km"),
     models.Unit.objects.get(symbol="l"),
+    models.Unit.objects.get(symbol="m^3"),
+    models.Unit.objects.get(symbol="J"),
 ]
 value_list = [
     1,
@@ -451,6 +455,8 @@ value_list = [
     1000,
     1,
     1000,
+    1/1000,
+    1,
 ]
 for k in range(0, len(unit_from_list)):
     item = ConversionCoefficient(unit_from=unit_from_list[k],
