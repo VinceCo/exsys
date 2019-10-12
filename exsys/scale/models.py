@@ -173,24 +173,24 @@ class Energy(models.Model):
         return self.__def__()
 
 
-class Power(models.Model):
-#    # A voir si je garde l'attribut resource
-#    resource = models.ForeignKey('Resource',
-#                                 null=True,
-#                                 on_delete=models.CASCADE,
-#                                 default="J")
-    unit = models.ForeignKey('Unit',
-                             null=False,
-                             on_delete=models.CASCADE,
-                             default="W")
-    value = models.DecimalField(max_digits=19,
-                                decimal_places=10,
-                                null=True,
-                                default=0)
-    def __def__(self):
-        return "{} {}".format(self.value, self.unit.symbol)
-    def __str__(self):
-        return self.__def__()
+#class Power(models.Model):
+##    # A voir si je garde l'attribut resource
+##    resource = models.ForeignKey('Resource',
+##                                 null=True,
+##                                 on_delete=models.CASCADE,
+##                                 default="J")
+#    unit = models.ForeignKey('Unit',
+#                             null=False,
+#                             on_delete=models.CASCADE,
+#                             default="W")
+#    value = models.DecimalField(max_digits=19,
+#                                decimal_places=10,
+#                                null=True,
+#                                default=0)
+#    def __def__(self):
+#        return "{} {}".format(self.value, self.unit.symbol)
+#    def __str__(self):
+#        return self.__def__()
 
 
 class Machine(models.Model):
@@ -217,6 +217,22 @@ class Machine(models.Model):
     price = models.DecimalField(max_digits=19,
                                 decimal_places=10,
                                 default=0)
+    power = models.DecimalField(max_digits=19,
+                                decimal_places=10,
+                                default=0)
+    power_unit = models.ForeignKey('Unit',
+                              null=True,
+                              on_delete=models.CASCADE,
+#                              related_name="%(app_label)s_%(class)s_related")
+                              related_name="+")
+    consumption = models.DecimalField(max_digits=19,
+                                decimal_places=10,
+                                default=0)
+    consumption_unit = models.ForeignKey('Unit',
+                              null=True,
+                              on_delete=models.CASCADE,
+#                              related_name="%(app_label)s_%(class)s_related")
+                              related_name="+")
     def __def__(self):
         return self.name
     def __str__(self):
@@ -284,3 +300,25 @@ class HeightScale(models.Model):
 #                                    self.height_unit))
 #    def __str__(self):
 #        return self.__def__()
+
+class ConversionCoefficient(models.Model):
+    unit_from = models.ForeignKey('Unit',
+                              null=True,
+                              on_delete=models.CASCADE,
+#                              related_name="%(app_label)s_%(class)s_related")
+                              related_name="+")
+    unit_to = models.ForeignKey('Unit',
+                              null=True,
+                              on_delete=models.CASCADE,
+#                              related_name="%(app_label)s_%(class)s_related")
+                              related_name="+")
+    value = models.DecimalField(max_digits=21,
+                                decimal_places=3,
+                                default=0,
+                                null=True)
+    def __def__(self):
+        return ("{} = {} {}".format(self.unit_from,
+                                    self.value,
+                                    self.unit_to))
+    def __str__(self):
+        return self.__def__()

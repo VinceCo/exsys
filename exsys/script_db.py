@@ -51,6 +51,8 @@ quantitys = ["energy",
              "speed",
              "acceleration",
              "distance",
+             "energy consumption per distance",
+             "time",
             ]
 for quantity in quantitys:
     item = PhysicalQuantity(physical_quantity=quantity)
@@ -64,39 +66,60 @@ delete_object(Unit.objects.all())
 unit_list = ["joule",
              "kilogram",
              "cubic metre",
+             "litre",
              "kilogram per cubic metre",
              "cubic metre per kilogram",
              "watt",
+             "kilo-watt",
+             "cheval-vapeur",
              "joule per cubic metre",
              "joule per kilogram",
              "metre per second",
              "metre per second squared",
              "metre",
+             "kilometre",
+             "litre per 100km",
+             "seconde",
+             "hour",
             ]
 symbol_list = ["J",
                "kg",
                "m^3",
+               "l",
                "kg/m^3",
                "m^3/kg",
                "W",
+               "kW",
+               "ch",
                "J/m^3",
                "J/kg",
                "m/s",
                "m/s^(-2)",
                "m",
+               "km",
+               "l/100km",
+               "s",
+               "h",
               ]
 physical_quantity_list = [
     PhysicalQuantity.objects.get(physical_quantity="energy"),
     PhysicalQuantity.objects.get(physical_quantity="mass"),
     PhysicalQuantity.objects.get(physical_quantity="volume"),
+    PhysicalQuantity.objects.get(physical_quantity="volume"),
     PhysicalQuantity.objects.get(physical_quantity="density"),
     PhysicalQuantity.objects.get(physical_quantity="specific volume"),
+    PhysicalQuantity.objects.get(physical_quantity="power"),
+    PhysicalQuantity.objects.get(physical_quantity="power"),
     PhysicalQuantity.objects.get(physical_quantity="power"),
     PhysicalQuantity.objects.get(physical_quantity="energy density"),
     PhysicalQuantity.objects.get(physical_quantity="specific energy"),
     PhysicalQuantity.objects.get(physical_quantity="speed"),
     PhysicalQuantity.objects.get(physical_quantity="acceleration"),
     PhysicalQuantity.objects.get(physical_quantity="distance"),
+    PhysicalQuantity.objects.get(physical_quantity="distance"),
+    PhysicalQuantity.objects.get(physical_quantity="energy consumption per distance"),
+    PhysicalQuantity.objects.get(physical_quantity="time"),
+    PhysicalQuantity.objects.get(physical_quantity="time"),
 ]
 for k in range(0, len(unit_list)):
     item = Unit(unit=unit_list[k],
@@ -311,16 +334,20 @@ for k in range(0, len(resource_list)):
 print("\n", Energy.objects.all())
 
 
-# Power
-Power = models.Power
-delete_object(Power.objects.all())
-unit_list = [Unit.objects.get(symbol="W")]
-value_list = [1]
-for k in range(0, len(value_list)):
-    item = Power(unit=unit_list[k],
-                 value=value_list[k])
-    item.save()
-print("\n", Power.objects.all())
+## Power
+#Power = models.Power
+#delete_object(Power.objects.all())
+#unit_list = [
+#    Unit.objects.get(symbol="W"),
+#]
+##value_list = [1]
+#for k in range(0, len(value_list)):
+#    item = Power(
+#        unit=unit_list[k],
+##        value=value_list[k],
+#    )
+#    item.save()
+#print("\n", Power.objects.all())
 
 
 # Machine 
@@ -333,6 +360,14 @@ energy_input_list = [Energy.objects.filter(resource__name__contains="oil")]
 energy_output_list = [Energy.objects.filter(resource__name__contains="oil")]
 efficiency_list = [0.3]
 price_list = [10E3]
+power_list = [75,
+             ]
+power_unit_list = [Unit.objects.get(symbol="ch"),
+             ]
+consumption_list = [6,]
+consumption_unit_list = [
+    Unit.objects.get(symbol="l/100km"),
+]
 for k in range(0, len(name_list)):
    item = Machine(name=name_list[k],
                   resource_input=resource_input_list[k],
@@ -340,7 +375,12 @@ for k in range(0, len(name_list)):
                   energy_input=energy_input_list[k][0],
                   energy_output=energy_output_list[k][0],
                   efficiency=efficiency_list[k],
-                  price=price_list[k])
+                  price=price_list[k],
+                  power=power_list[k],
+                  power_unit=power_unit_list[k],
+                  consumption=consumption_list[k],
+                  consumption_unit=consumption_unit_list[k],
+                 )
    item.save()
 print("\n", Machine.objects.all())
 
@@ -374,3 +414,47 @@ for k in range(0, len(name_list)):
                        height_unit=height_unit_list[k])
     item.save()
 print("\n", HeightScale.objects.all())
+
+
+# To populate ConversonCoefficient
+ConversionCoefficient = models.ConversionCoefficient
+delete_object(ConversionCoefficient.objects.all())
+unit_from_list = [
+    models.Unit.objects.get(symbol="W"),
+    models.Unit.objects.get(symbol="ch"),
+    models.Unit.objects.get(symbol="kW"),
+    models.Unit.objects.get(symbol="h"),
+    models.Unit.objects.get(symbol="m"),
+    models.Unit.objects.get(symbol="km"),
+    models.Unit.objects.get(symbol="km"),
+    models.Unit.objects.get(symbol="l/100km"),
+    models.Unit.objects.get(symbol="m^3"),
+]
+unit_to_list = [
+    models.Unit.objects.get(symbol="W"),
+    models.Unit.objects.get(symbol="W"),
+    models.Unit.objects.get(symbol="W"),
+    models.Unit.objects.get(symbol="s"),
+    models.Unit.objects.get(symbol="m"),
+    models.Unit.objects.get(symbol="km"),
+    models.Unit.objects.get(symbol="m"),
+    models.Unit.objects.get(symbol="l/100km"),
+    models.Unit.objects.get(symbol="l"),
+]
+value_list = [
+    1,
+    735.5,
+    1000,
+    3600,
+    1,
+    1,
+    1000,
+    1,
+    1000,
+]
+for k in range(0, len(unit_from_list)):
+    item = ConversionCoefficient(unit_from=unit_from_list[k],
+                                 unit_to=unit_to_list[k],
+                                 value=value_list[k])
+    item.save()
+print("\n", ConversionCoefficient.objects.all())

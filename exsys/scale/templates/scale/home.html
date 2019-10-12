@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content%}
+    <div>
+        <p>Choice</p>
+        <p class="item">
+            <a href={% url "energy" %}>Energy</a> 
+        </p>
+        <p class="item">
+            <a href={% url "machine" %}>Machine</a> 
+        </p>
+    </div>
+{% endblock %}
+

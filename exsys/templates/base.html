@@ -15,17 +15,17 @@
         <header><span id="header_title"><strong>Scale project</strong></span></header>
 	<div id="container_nav_contents">
 		<nav>
-                	{% block nav %}
-				<div id="nav_links">
+            {% block nav %}
+                <div id="nav_links">
 					<a href="{% url "home" %}">Home</a>
-	        		</div>
-                	{% endblock %}
-            	</nav>
-            	<section id="content">
-            		{% block content %}
-                        contents from the base.html
-                    {% endblock %}
-		</section>
+                </div>
+            {% endblock %}
+        </nav>
+            <section id="content">
+                {% block content %}
+                    contents from the base.html
+                {% endblock %}
+            </section>
         </div>
         <footer></footer>
     </body>
