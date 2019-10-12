@@ -53,18 +53,6 @@ class MachinePowerForm(forms.Form):
         widget=forms.RadioSelect)
 
 class MachineConsumptionForm(forms.Form):
-#    time = forms.DecimalField()
-#    time_unit = forms.ModelChoiceField(
-#        queryset=models.Unit.objects.filter(
-#            physical_quantity__physical_quantity="time"),
-#        empty_label=None,
-#        widget=forms.RadioSelect)
-#    height_scale = forms.ModelChoiceField(
-#        queryset=models.HeightScale.objects.all(),
-#        empty_label=None,
-#        widget=forms.RadioSelect)
-
-
     machine = forms.ModelChoiceField(
         queryset=models.Machine.objects.all(),
         empty_label=None,

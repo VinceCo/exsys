@@ -18,12 +18,6 @@ def energy(request):
     if (request.method == 'POST'):
         form = forms.EnergyForm(request.POST)
         if form.is_valid():
-#            energy = methods.machine_output_energy(
-#                models.Energy.objects.get(
-#                    resource=form.cleaned_data['energy']),
-#                form.cleaned_data['value'],
-#                models.Unit.objects.get(symbol=form.cleaned_data['unit']),
-#                form.cleaned_data['efficiency'])
             energy = methods.machine_output_energy(
                 models.Energy.objects.get(
                     resource=form.cleaned_data['energy']),
@@ -46,7 +40,6 @@ def machine_consumption(request):
     if (request.method == 'POST'):
         form = forms.MachineConsumptionForm(request.POST)
         if form.is_valid():
-
             energy = methods.consumption_into_energy(
                 models.Energy.objects.get(resource__name=
                                           form.cleaned_data["fuel"]),
