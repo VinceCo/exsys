@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Sketches{% endblock %}
+
+{% block content %}
+    <h1 class="title">Sketches</h1>
+    <div class="sketch_list">
+   	 {% for sketch in sketches_list %}
+   	         <div class="sketch">
+   	             <p id="sketch_title">{{ sketch.title }}</p>
+   	             <img id="sketch_image" src="{{ sketch.sketch_image.url }}"/>
+   	             <a id="sketch_comment" href="{% url 'comment' sketch.title %}">Comment</a>
+   	         </div>
+   	 {% endfor %}
+    </div>
+{% endblock %}

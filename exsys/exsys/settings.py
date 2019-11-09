@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scale',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -123,4 +124,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+#STATIC_URL = '/static/'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "static/"),
+   # "/var/www/nuances_project/static/",
+]
+
+
+#STATIC_ROOT = os.path.join(BASE_DIR, "static/") #maybe it is without the / at the end
+STATIC_ROOT ="/var/www/nuances_project/static/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'

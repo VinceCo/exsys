@@ -1,0 +1,13 @@
+{% extends "show_items.html" %}
+{% block title %}{{story_title }}{% endblock %}
+{% block show_item %}
+    <p class="page">
+        <img src="{{ item.page.url }}"/>
+    </p>
+{% endblock %}
+
+    {% comment %}
+    <p>
+        <a class="comment_story" href="{% url 'comment' story.title %}">Comment</a>
+    </p>
+    {% endcomment %}

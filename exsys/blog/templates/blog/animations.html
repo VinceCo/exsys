@@ -1,0 +1,9 @@
+{% extends "show_items.html" %}
+{% load blog_extras %}
+{% block title %}Animations{% endblock %}
+{% block show_item %}
+	<p>{{ item.title }}</p>
+	<p>
+		<iframe width="420" height="315" src={{ item.url | youtu_url_embeb }} frameborder="0" allowfullscreen></iframe>
+	</p>
+{% endblock %}

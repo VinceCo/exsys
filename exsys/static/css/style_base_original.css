@@ -1,0 +1,221 @@
+/*The folowing block in comment is several front that I tried
+ * and I'm not convince by the look it gives to the website.
+ * excepte for lmroman10*/
+/*
+laid
+@font-face {
+    font-family: 'LatinModernRomanLan';
+    src: url('../font/latin_modern_roman/lmromanslant10-regular.otf');
+}
+This was is OK
+@font-face {
+    font-family: 'lmroman10';
+    src: url('../font/latin_modern_roman/lmroman10-regular.otf');
+}
+beurk
+@font-face {
+    font-family: 'lmromandemi10';
+    src: url('../font/latin_modern_roman/lmromandemi10-regular.otf');
+}
+beurk aussi
+@font-face {
+    font-family: 'lmromandunh10';
+    src: url('../font/latin_modern_roman/lmromandunh10-regular.otf');
+}
+bof
+@font-face {
+    font-family: 'lmromanslant10';
+    src: url('../font/latin_modern_roman/lmromanslant10-regular.otf');
+}
+*/
+
+/*This one is OK*/
+@font-face {
+    font-family: 'lmroman10';
+    src: url('../font/latin_modern_roman/lmroman10-regular.otf');
+}
+/*-----------------------*/
+/* css for base.html */
+body  
+{
+    font-family: 'lmroman10';  /*'lmromanslant10';*/ /*'lmromandunh10';*/ /*'lmromandemi10';*/
+    display: flex;    
+    flex-direction: column;
+    min-height: 97vh;
+    font-size: 25px;
+}
+header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18.5vh;  
+    font-size: 35px;
+    background: url("../background_images/header_blue_2.png") no-repeat top;
+}
+#header_title
+{
+    position: relative;
+    left: 12vh; /* this instruction is necessary for centering the title with the content below */
+}
+#container_nav_contents
+{
+    display: flex;
+    flex: 1; 
+}
+nav
+{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-start;  
+}
+#nav_links
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; 
+    height: 70vh;
+    width: 25vh;
+    position: fixed; 
+}
+#content
+{
+    display: flex;
+    flex-direction: column;
+    flex: 8; 
+}
+footer
+{
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+a
+{
+    text-decoration: none;
+}
+/*-----------------------*/
+/* css for home.html */
+.news
+{
+    display: flex;
+    justify-content: center;    
+}
+/*-----------------------*/
+/* css for stories.html */
+.title
+{
+    display: flex;
+    justify-content: center;
+}
+.story_list
+{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+}
+.story_list_link
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*-----------------------*/
+/* CSS for show_story.html */
+.page
+{
+    display: flex;
+    justify-content: center; 
+}
+.comment_story /*this class is also in stories.html*/
+{
+    display: flex;
+    justify-content: center;
+}
+/*-----------------------*/
+/* CSS for sketches.html  */
+.title
+{
+    display: flex;
+    justify-content: center;
+}
+.sketch_list
+{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+}
+.sketch
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/*-----------------------*/
+/* CSS for contact.html  */
+#message_contact
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*-----------------------*/
+/* CSS for comment.html  */
+#message_sent
+{
+    display: flex;
+    justify-content: center;
+}
+.comment
+{
+    display: flex;
+    justify-content: center;
+}
+.comment_block
+{
+    display: flex;
+}
+
+.comment_message
+{
+    width: 100vh;
+    margin-left: 10px;
+}
+.form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+/*-----------------------*/
+/* CSS for home.html  */
+.news
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20vh;
+    margin-right: 20vh;
+    margin-bottom: 5vh;
+}
+/*-----------------------*/
+/* css for show_items.html */
+.title
+{
+    display: flex;
+    justify-content: center;
+}
+.items_list
+{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+}

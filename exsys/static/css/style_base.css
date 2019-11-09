@@ -1,0 +1,160 @@
+/*This one is OK*/
+@font-face {
+    font-family: 'lmroman10';
+    src: url('../font/latin_modern_roman/lmroman10-regular.otf');
+}
+
+
+/*-----------------------*/
+/* css for base.html */
+body  
+{
+    font-family: 'lmroman10';  /*'lmromanslant10';*/ /*'lmromandunh10';*/ /*'lmromandemi10';*/
+    display: flex;    
+    flex-direction: column; 
+    min-height: 97vh;
+    font-size: 25px;
+}
+a {
+    color: inherit;
+}
+header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../background_images/header_blue_2.png") no-repeat top;
+}
+#header_title
+{
+}
+#container_nav_contents
+{
+    display: flex;
+    flex: 1; 
+    flex-direction: column;
+    justify-content: center;
+}
+nav
+{
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+}
+#nav_links
+{
+
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+}
+#content
+{
+    display: flex;
+    flex-direction: column;
+    flex: 8; 
+}
+footer
+{
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+a
+{
+    text-decoration: none;
+}
+
+/*-----------------------*/
+/* css for show.html */
+.title
+{
+    display: flex;
+    justify-content: center;
+}
+.items_list
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    justify-content: space-around;
+}
+
+
+/*-----------------------*/
+/* css for show_items.html */
+.item
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+/*    background-color: black; */
+}
+
+/*-----------------------*/
+/* css for show_news.html */
+.news
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    margin-left: 20px;
+}
+
+
+/*-----------------------*/
+/* css for stories.html */
+.item_link
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*-----------------------*/
+/* CSS for contact.html  */
+#message_contact
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*-----------------------*/
+/* CSS for comment.html  */
+#message_sent
+{
+    display: flex;
+    justify-content: center;
+}
+.comment
+{
+    display: flex;
+    justify-content: center;
+}
+.comment_block
+{
+    display: flex;
+}
+
+.comment_message
+{
+    width: 100vh;
+    margin-left: 10px;
+}
+.form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}

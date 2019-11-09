@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Comment{% endblock %}
+
+{% block content %}
+
+    {% if bool_sent %}<p id="message_sent">Your comment has been added !</p>{% endif %}
+   
+    <form class="form" action="{% url 'comment' item.title %}" method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+    </form>
+
+    <p class="title">Comments</p>
+    {% for comment in comments_list %}
+        <div class="comment">
+        	<p class="comment_author">{{ comment.author }} :</p>
+		<p class="comment_message">{{ comment.message }}</p>
+    	</div>
+    {% endfor %}
+
+{% endblock %}

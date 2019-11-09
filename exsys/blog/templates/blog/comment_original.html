@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Comment{% endblock %}
+
+{% block content %}
+
+    {% if bool_sent %}<p id="message_sent">Your comment has been added !</p>{% endif %}
+    
+    {% if bool_story_comment %} {% comment %} this if is used when the user is commenting a story {% endcomment %}
+        <form class="form" action="{% url 'comment_story' story.title %}" method="post">
+    {% endif %}
+    {% if bool_sketch_comment %} {% comment %} this if is used when the user is commenting a sketch {% endcomment %}
+        <form class="form" action="{% url 'comment_sketch' sketch.title %}" method="post">
+    {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+    <p class="title">Comments</p>
+    {% for comment in comment_list %}
+        <div class="comment">
+            {% comment %}   <p id="comment_author">{{ comment.author }} : </p><p id="comment_message">{{ comment.message }}</p> {% endcomment %}
+        <p class="comment_author">{{ comment.author }} :</p>
+	<p class="comment_message">{{ comment.message }}</p>
+    </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title  %}Stories{% endblock %}
+{% block content %}
+    <h1 class="title"> Stories's list </h1>
+    <div class="story_list">
+   	 {% for story in stories_list %}
+   	     <p class="story">
+   	         <a class="story_list_link" href="{% url "show_story" story.title %}">
+   	             <p class="story_title">{{ story.title }}</p>
+   	             <img src="{{ story.cover_page.url }}"/>
+   	         </a>
+   	         <a class="comment_story" href="{% url 'comment' story.title %}">Comment</a>
+   	     </p>
+   	 {% endfor %}
+    </div>
+{% endblock %}

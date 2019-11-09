@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+{# What variable should be in block item_title ? #}
+{# it should be Sketches's list or Stories's list #}
+	<h1 class="title">{%block title %}{% endblock %}</h1>
+	<div class="items_list">
+	    	{% for item in items_list %}
+			<div class={%block div_class %}{% endblock %}>
+				{% block show_item %}	        
+				{% endblock%}
+	    	    		{% comment %}	
+					{# uncomment this for enable comments #}
+	    	    			<a class="comment" href="{% url 'comment' item.title %}">Comment</a>
+				{% endcomment %}
+			</div>
+	    	{% endfor %}
+		<div class="pagination">
+			<span class="step-links">
+				{% if items_list.has_previous %}
+					<a href="?page=1">&laquo; first</a>
+					<a href="?page={{ items_list.previous_page_number }}">previous</a>
+				{% endif %}
+				<span class="current_page">
+					{{ items_list.number }} of {{ items_list.paginator.num_pages }}
+				</span>
+				{% if items_list.has_next %}
+					<a href="?page={{ items_list.next_page_number }}">next</a>
+					<a href="?page={{ items_list.paginator.num_pages }}">last &raquo;</a>
+				{% endif %}
+		</div>
+	</div>
+{% endblock %}
