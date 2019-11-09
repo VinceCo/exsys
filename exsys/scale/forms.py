@@ -18,12 +18,12 @@ class EnergyForm(forms.Form):
             | Q(physical_quantity__physical_quantity="volume")),
         empty_label=None,
         widget=forms.RadioSelect)
-    value = forms.FloatField()
+    value = forms.FloatField(min_value=0)
     machine = forms.ModelChoiceField(
         queryset=models.Machine.objects.all(),
         empty_label=None,
         widget=forms.RadioSelect)
-    efficiency = forms.FloatField()
+    efficiency = forms.FloatField(min_value=0, max_value=1)
     height_scale = forms.ModelChoiceField(
         queryset=models.HeightScale.objects.all(),
         empty_label=None,

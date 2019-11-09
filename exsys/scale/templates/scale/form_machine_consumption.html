@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content%}
+    <div>
+        <form action="{% url url %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.machine.id_for_label }}">Sélectionnez une machine :</label>
+                {{ form.machine.errors }}
+                {{ form.machine }}
+            </div>
+            <div>
+                <label for="{{ form.fuel.id_for_label }}">Précisez type de fuel :</label>
+                {{ form.fuel.errors }}
+                {{ form.fuel }}
+            </div>
+            <div>
+                <label for="{{ form.consumption.id_for_label }}">Précisez la consommation de la machine :</label>
+                {{ form.consumption.errors }}
+                {{ form.consumption }}
+            </div>
+            <div>
+                <label for="{{ form.consumption_unit.id_for_label }}">Précisez l'unité de la consommation du la machine :</label>
+                {{ form.consumption_unit.errors }}
+                {{ form.consumption_unit }}
+            </div>
+            <div>
+                <label for="{{ form.distance.id_for_label }}">Précisez la distance d'utilisation de la machine :</label>
+                {{ form.distance.errors }}
+                {{ form.distance }}
+            </div>
+            <div>
+                <label for="{{ form.distance_unit.id_for_label }}">Précisez l'unité de la distance d'utilisation de la machine :</label>
+                {{ form.distance_unit.errors }}
+                {{ form.distance_unit }}
+            </div>
+            <div>
+                <label for="{{ form.height_scale.id_for_label }}">Sélectionnez l'échelle de comparaison :</label>
+                {{ form.height_scale.errors }}
+                {{ form.height_scale }}
+            </div>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+    <div>
+    {% if form.is_valid %}
+        <div>
+            <p class="item">
+            Equivalent à une personne de 100 kg grimpant {{ output|floatformat:"0" }} {{ output.unit }} fois la {{ height_scale_name }}
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}

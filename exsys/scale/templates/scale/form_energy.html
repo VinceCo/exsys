@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content%}
+    <div>
+        <form action="{% url url %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.energy.id_for_label }}">Selectionnez un type d'énergie :</label>
+                {{ form.energy.errors }}
+                {{ form.energy }}
+            </div>
+            <div>
+                <label for="{{ form.value.id_for_label }}">Précisez une quantité d'énergie :</label>
+                {{ form.value.errors }}
+                {{ form.value }}
+            </div>
+            <div>
+                <label for="{{ form.unit.id_for_label }}">Selectionnez l'unité de la quantité d'énergie :</label>
+                {{ form.unit.errors }}
+                {{ form.unit }}
+            </div>
+            <div>
+                <label for="{{ form.machine.id_for_label }}">Selectionnez une machine :</label>
+                {{ form.machine.errors }}
+                {{ form.machine }}
+            </div>
+            <div>
+                <label for="{{ form.efficiency.id_for_label }}">Précisez l'efficacité de la machine :</label>
+                {{ form.efficiency.errors }}
+                {{ form.efficiency }}
+            </div>
+            <div>
+                <label for="{{ form.height_scale.id_for_label }}">Selectionnez l'échelle de comparaison :</label>
+                {{ form.height_scale.errors }}
+                {{ form.height_scale }}
+            </div>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+    <div>
+    {% if form.is_valid %}
+        <div>
+            <p class="item">
+            Equivalent à une personne de 100 kg grimpant {{ output|floatformat:"0" }} {{ output.unit }} fois la {{ height_scale_name }}
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -15,9 +15,11 @@ def home(request):
 
 def energy(request):
     url = "energy"
+    #height_scale_boolean = False
     if (request.method == 'POST'):
         form = forms.EnergyForm(request.POST)
         if form.is_valid():
+    #        height_scale_boolean = True
             energy = methods.machine_output_energy(
                 models.Energy.objects.get(
                     resource=form.cleaned_data['energy']),
@@ -27,10 +29,12 @@ def energy(request):
             output = methods.energy_into_height_equivalent(
                 energy,
                 request.POST["height_scale"])
+            print(request.POST["height_scale"])
+            height_scale_name = models.HeightScale.objects.get(id=request.POST["height_scale"]).name
     else:
         form = forms.EnergyForm()
         output_energy = 0
-    return render(request, 'scale/form.html', locals())
+    return render(request, 'scale/form_energy.html', locals())
 
 def machine(request):
     return render(request, 'scale/machine.html', locals())
@@ -52,9 +56,10 @@ def machine_consumption(request):
             output = methods.energy_into_height_equivalent(
                 energy,
                 request.POST["height_scale"])
+            height_scale_name = models.HeightScale.objects.get(id=request.POST["height_scale"]).name
     else:
         form = forms.MachineConsumptionForm()
-    return render(request, 'scale/form.html', locals())
+    return render(request, 'scale/form_machine_consumption.html', locals())
 
 def machine_power(request):
     url = "machine_power"
@@ -71,9 +76,10 @@ def machine_power(request):
             output = methods.energy_into_height_equivalent(
                 energy,
                 request.POST["height_scale"])
+            height_scale_name = models.HeightScale.objects.get(id=request.POST["height_scale"]).name
     else:
         form = forms.MachinePowerForm()
-    return render(request, 'scale/form.html', locals())
+    return render(request, 'scale/form_machine_power.html', locals())
 
 def redirect_home(request):
     return redirect('home')
