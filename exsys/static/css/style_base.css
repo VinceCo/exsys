@@ -24,7 +24,6 @@ header
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f2f2f2;
     height: 50px;
 }
 #header_title
@@ -42,7 +41,10 @@ nav
     display: flex;
     flex-direction: column;
     flex: 1; 
-    background-color: #bfbfbf;
+    background-color: #ccf2ff;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #808080;
 }
 #nav_links
 {
@@ -59,7 +61,6 @@ nav
     display: flex;
     flex-direction: column;
     flex: 100; 
-    background-color: #f2f2f2;
 }
 footer
 {
@@ -108,7 +109,7 @@ footer
     padding-right: 10px;
     padding-left: 10px;
     width: 80%; 
-    background-color: #cccccc;
+    background-color: #e6e6e6;
 }
 .news_message
 {
