@@ -1,5 +1,5 @@
 from django.contrib import admin
-from scale import models
+from tools import models
 
 
 #class PhysicalStateAdmin(admin.ModelAdmin):

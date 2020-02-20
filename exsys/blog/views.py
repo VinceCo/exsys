@@ -92,3 +92,9 @@ def make_page(request, list, num_item):
     paginator = Paginator(list, num_item)
 
     return paginator.get_page(page)
+
+def to_do(request):
+    return render(request, 'blog/to_do.html', locals())
+
+def making_of(request):
+    return render(request, 'blog/contact.html', locals())

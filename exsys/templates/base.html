@@ -12,13 +12,15 @@
 
 
         <body>
-            <header><span id="header_title"><strong>Exsys</strong></span></header>
+            <header><span id="header_title"><strong><a href="{% url "home" %}">Exsys</strong></a></span></header>
             <div id="container_nav_contents">
                 <nav>
                     {% block nav %}
                         <div id="nav_links">
-                            <a href="{% url "home" %}">Home</a>
-                            <a href="{% url "home_scale" %}">Scale</a>
+                            <a href="{% url "home_tools" %}">Tools</a>
+                            <a href="{% url "home_models" %}">Models</a>
+                            <a href="{% url "home_to_do" %}">To do list</a>
+                            <a href="{% url "home_making" %}">Making of</a>
                             {% comment %}
                             <a href="{% url "stories" %}">Stories</a>
                             <a href="{% url "sketches" %}">Sketches</a>

@@ -11,7 +11,7 @@ from . import methods
 
 
 def home(request):
-    return render(request, 'scale/home.html', locals())
+    return render(request, 'tools/home.html', locals())
 
 def energy(request):
     url = "energy"
@@ -34,10 +34,10 @@ def energy(request):
     else:
         form = forms.EnergyForm()
         output_energy = 0
-    return render(request, 'scale/form_energy.html', locals())
+    return render(request, 'tools/form_energy.html', locals())
 
 def machine(request):
-    return render(request, 'scale/machine.html', locals())
+    return render(request, 'tools/machine.html', locals())
 
 def machine_consumption(request):
     url = "machine_consumption"
@@ -59,7 +59,7 @@ def machine_consumption(request):
             height_scale_name = models.HeightScale.objects.get(id=request.POST["height_scale"]).name
     else:
         form = forms.MachineConsumptionForm()
-    return render(request, 'scale/form_machine_consumption.html', locals())
+    return render(request, 'tools/form_machine_consumption.html', locals())
 
 def machine_power(request):
     url = "machine_power"
@@ -79,7 +79,7 @@ def machine_power(request):
             height_scale_name = models.HeightScale.objects.get(id=request.POST["height_scale"]).name
     else:
         form = forms.MachinePowerForm()
-    return render(request, 'scale/form_machine_power.html', locals())
+    return render(request, 'tools/form_machine_power.html', locals())
 
 def redirect_home(request):
     return redirect('home')

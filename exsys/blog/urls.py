@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^sketches/?$', views.view_sketches, name='sketches'),
     url(r'^contact/?$', views.view_contact, name='contact' ),
     url(r'^comment/(?P<id_title>[\w\s]+)/?$', views.view_comment, name='comment'),
+    url(r'^making_of/?$', views.making_of, name='home_making'),
+    url(r'^to_do/?$', views.to_do, name='home_to_do'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
 ]
