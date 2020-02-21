@@ -3,6 +3,9 @@
 {% block content%}
 	<h1 class="title">Models</h1>
     <div class="items_list">
+        {% for report in reports %}
+            <a href={% url "model" report.title %}>{{ report.subjet }}</a>
+        {% endfor %}
         {% comment %}
         {% comment %}
         <p class="item">

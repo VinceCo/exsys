@@ -1,6 +1,8 @@
-from scale import models
+from tools import models
 
 """
+Use this script like this
+python manage.py shell < script.py
 """
 
 def delete_object(object_list):

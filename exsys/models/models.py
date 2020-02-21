@@ -5,16 +5,21 @@ class Report(blog_models.ItemCommonInfo):
     subjet = models.CharField(max_length=100, default='Subjet')
 
 
-class ReportText(blog_models.ItemCommonInfo):
-    text = models.ForeignKey('report', null=True, on_delete=models.CASCADE,)
+class ReportItem(blog_models.Item):
+    report = models.ForeignKey('report', null=True, on_delete=models.CASCADE,)
+    item_nb = models.PositiveIntegerField(unique=True)
 
 
-class Graphic(models.Model):
-    graphic = models.ImageField(upload_to="models/")
-    title = models.CharField(max_length=100, default='Item')
+class ReportText(ReportItem):
+    text = models.TextField(blank=False, null=True)
+
+
+class Figure(ReportItem):
+    fig = models.ImageField(upload_to="models/")
 
     def __str__(self):
         return self.title
 
 #    def get_absolute_url(self):
-#        return reverse('sketches')
+##        return reverse('sketches')
+#        return reverse('figures')
