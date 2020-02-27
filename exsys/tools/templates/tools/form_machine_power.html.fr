@@ -1,40 +1,40 @@
 {% extends "base.html" %}
 {% block content%}
-    <div class="items_list centered">
-        <form class="news" action="{% url url %}" method="post">
+    <div>
+        <form action="{% url url %}" method="post">
             {% csrf_token %}
             <div>
-                <label for="{{ form.machine.id_for_label }}">Select a machine:</label>
+                <label for="{{ form.machine.id_for_label }}">Sélectionnez une machine :</label>
                 {{ form.machine.errors }}
                 {{ form.machine }}
             </div>
             <div>
-                <label for="{{ form.power.id_for_label }}">Specify the machine's power value:</label>
+                <label for="{{ form.power.id_for_label }}">Précisez la valeur de la puissance la machine :</label>
                 {{ form.power.errors }}
                 {{ form.power }}
             </div>
             <div>
-                <label for="{{ form.power_unit.id_for_label }}">Select the machine's power unit:</label>
+                <label for="{{ form.power_unit.id_for_label }}">Sélectionnez l'unité dela puissance de la machine :</label>
                 {{ form.power_unit.errors }}
                 {{ form.power_unit }}
             </div>
             <div>
-                <label for="{{ form.efficiency.id_for_label }}">Specify the machine effciency:</label>
+                <label for="{{ form.efficiency.id_for_label }}">Précisez l'efficacité de la machine :</label>
                 {{ form.efficiency.errors }}
                 {{ form.efficiency }}
             </div>
             <div>
-                <label for="{{ form.time.id_for_label }}">Specify the machine usage time:</label>
+                <label for="{{ form.time.id_for_label }}">Précisez le temps d'utilisation de la machine :</label>
                 {{ form.time.errors }}
                 {{ form.time }}
             </div>
             <div>
-                <label for="{{ form.time_unit.id_for_label }}">Select the time usage unit:</label>
+                <label for="{{ form.time_unit.id_for_label }}">Sélectionnez l'unité de la valeur du temps d'utilisation de la machine :</label>
                 {{ form.time_unit.errors }}
                 {{ form.time_unit }}
             </div>
             <div>
-                <label for="{{ form.height_scale.id_for_label }}">Select a comparison scale:</label>
+                <label for="{{ form.height_scale.id_for_label }}">Sélectionnez l'échelle de comparaison :</label>
                 {{ form.height_scale.errors }}
                 {{ form.height_scale }}
             </div>
@@ -45,7 +45,7 @@
     {% if form.is_valid %}
         <div>
             <p class="item">
-            Equivalent to a man of 100kg climbing {{ output|floatformat:"0" }} {{ output.unit }} time the {{ height_scale_name }}
+            Equivalent à une personne de 100 kg grimpant {{ output|floatformat:"0" }} {{ output.unit }} fois la {{ height_scale_name }}
             </p>
         </div>
     {% endif %}

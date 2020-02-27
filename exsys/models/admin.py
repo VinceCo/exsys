@@ -21,7 +21,7 @@ class ReportTextAdmin(admin.ModelAdmin):
 
 
 class FigureAdmin(admin.ModelAdmin):
-    list_display = ('title', 'figure', 'date', 'report', 'report', 'item_nb')
+    list_display = ('title', 'fig', 'date', 'report', 'item_nb')
     list_filter = ('title','date','report', 'item_nb')
 
 

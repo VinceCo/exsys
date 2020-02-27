@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title  %}Making of{% endblock %}
+{% block content%}
+<h1 class="title">{%block item_title %}<a href={% url "home_making" %}>Making of</a>{% endblock %}</h1>
+    <div class="items_list">
+        <div class="news centered">
+            {% for item in items_list %} 
+                <a class="item_link" href="{% url "show_making" item.title %}">
+                    <h3>{{ item.title }}</h3>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% comment %}
+{% block show_item %}
+	<a class="item_link" href="{% url "show_making" item.title %}"> <p class="item_title">{{ item.title }}</p>
+	</a>
+{% endblock %}
+{% endcomment %}

@@ -1,26 +1,21 @@
 {% extends "base.html" %}
 {% load class_name %}
-{% block title %}Tools{% endblock %}
+{% block title %}Models{% endblock %}
 {% block content%}
-	<h1 class="title">Models</h1>
+<h1 class="title"><a href="{% url "home_models" %}">Models</a></h1>
     <div class="items_list">
-        <p>{{ report.subjet }}</p>
-        {% for item in item_list %} 
-            {% with item|class_name as class_name %}
-                {% if class_name == 'ReportText' %}
-                    <p>It works</p>
-                {% elif class_name == 'Figure' %}
-                    <img id="sketch_image" src="{{ item.fig.url }}"/> 
-                    <p>It didn't work</p>
-                {% endif %}
-            {% endwith %}
-        {% comment%}
-        {% autoescape off %}
-        <p>{{ report_text.text }}</p>
-        {% endautoescape off %}
-        {% endcomment%}
-
-        {% endfor %}
+        <h3>{{ report.title }}</h3>
+        <div class="news centered">
+            {% for item in item_list %} 
+                {% with item|class_name as class_name %}
+                    {% if class_name == 'ReportText' %}
+                        <p>It works</p>
+                    {% elif class_name == 'Figure' %}
+                        <img id="sketch_image" src="{{ item.fig.url }}"/> 
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+            {% lorem 3 p %}
+        </div>
     </div>
 {% endblock %}
-

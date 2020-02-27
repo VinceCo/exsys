@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content%}
-    <div>
-        <a href={% url "machine_power" %}>power</a>
-        <a href={% url "machine_consumption" %}>consumption</a>
+    <div class="items_list">
+        <div class="news centered">
+            <h4><a href={% url "machine_power" %}>power</a></h4>
+            <h4><a href={% url "machine_consumption" %}>consumption</a></h4>
+        <div>
     <div>
 {% endblock %}
 

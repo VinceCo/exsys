@@ -26,7 +26,7 @@ class Comment(ItemCommonInfo):
 
 
 class Sketch(Item):
-    sketch_image = models.ImageField(upload_to="sketches/")
+    sketch_image = models.ImageField(upload_to="blog/sketches/")
 
     def __str__(self):
         return self.title
@@ -76,3 +76,24 @@ class Animation(Item):
 
     def get_absolute_url(self):
         return reverse('animations',)
+
+
+class MakingOf(ItemCommonInfo):
+    pass
+
+
+class MakingOfItem(Item):
+    making_of = models.ForeignKey('MakingOf', null=True, on_delete=models.CASCADE,)
+    item_nb = models.PositiveIntegerField()
+
+
+class MakingOfText(MakingOfItem):
+    text = models.TextField(blank=False, null=True)
+
+
+class MakingOfFigure(MakingOfItem):
+    fig = models.ImageField(upload_to="blog/making_of")
+
+    def __str__(self):
+        return self.title
+

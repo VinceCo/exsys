@@ -1,14 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Tools{% endblock %}
-{% block content%}
-	<h1 class="title">Tools</h1>
+{% block content %}
+<h1 class="title">{% block title %}<a href="{% url "home_tools" %}">Tools</a>{% endblock %}</h1>
     <div class="items_list">
-        <p class="item">
-            <a href={% url "energy" %}>Energy</a> 
-        </p>
-        <p class="item">
-            <a href={% url "machine" %}>Machine</a> 
-        </p>
+        <div class="news centered">
+            <h3><a href={% url "energy" %}>Energy</a></h2>
+            <h3><a href={% url "machine" %}>Machine</a></h2>
+        </div>
     </div>
 {% endblock %}
 

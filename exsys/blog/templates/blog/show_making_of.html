@@ -1,0 +1,22 @@
+{% extends "show_items.html" %}
+{% load class_name %}
+{% block title %}{{ making_of.subject }}{% endblock %}
+{% block show_item %}
+    {% block content%}
+    <h1 class="title"><a href={% url "home_making" %}>Making of</a></h1>
+        <div class="items_list">
+            <h3>{{ making_of.title }}</h3>
+            <div class="news centered">
+                {% for item in items_list %} 
+                    {% with item|class_name as class_name %}
+                        {% if class_name == 'MakingOfText' %}
+                            <p>{{ item.text|linebreaksbr }}</p>
+                        {% elif class_name == 'MakingOfFigure' %}
+                            <img id="sketch_image" src="{{ item.fig.url }}"/> 
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

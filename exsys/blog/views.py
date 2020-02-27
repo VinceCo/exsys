@@ -11,6 +11,10 @@ from blog.models import Sketch
 from blog.models import Comment
 from blog.models import Item
 from blog.models import Animation
+from blog.models import MakingOf
+from blog.models import MakingOfItem
+from blog.models import MakingOfText
+from blog.models import MakingOfFigure
 
 from blog.forms import CommentForm
 
@@ -93,8 +97,26 @@ def make_page(request, list, num_item):
 
     return paginator.get_page(page)
 
-def to_do(request):
-    return render(request, 'blog/to_do.html', locals())
-
 def making_of(request):
-    return render(request, 'blog/contact.html', locals())
+    making_of_list = MakingOf.objects.all()
+    return render(request, 'blog/making_of.html', {
+        'items_list': making_of_list,
+        })
+
+def show_making_of(request, id_title):
+    making_of = MakingOf.objects.get(title=id_title)
+    making_of_items = making_of.makingofitem_set.all()
+    making_of_texts = MakingOfText.objects.filter(making_of__title=making_of.title)
+    making_of_figures = MakingOfFigure.objects.filter(making_of__title=making_of.title)
+    items_list = []
+
+    # This block is sorting texts and figures
+    for k in range(0, len(making_of_items)):
+        q_item_text = making_of_texts.filter(item_nb=k)
+        q_item_figure = making_of_figures.filter(item_nb=k)
+        if q_item_text.exists():
+            items_list.append(q_item_text[0])
+        if q_item_figure.exists():
+            items_list.append(q_item_figure[0])
+
+    return render(request, 'blog/show_making_of.html', locals())

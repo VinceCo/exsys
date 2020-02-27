@@ -4,24 +4,30 @@
 
 {% block show_item %}
     {% comment %}
-    <div class="news">
+        <div class="news">
     {% endcomment %}
+
         <h2>{{ item.title }}</h2>
-        <span>{{ item.date }}, {{ item.author }}</span>
+        <span>{{ item.date|date }}, {{ item.author }}</span>
+        
             {% comment %}
-            <p class="news_title">{{ item.title }}</p>
-            <p class="news_date">{{ item.date }}</p>
-            <p class="news_author">{{ item.author }}</p>
+                <p class="news_title">{{ item.title }}</p>
+                <p class="news_date">{{ item.date }}</p>
+                <p class="news_author">{{ item.author }}</p>
             {% endcomment %}
             
             {% comment %}
-            <p class="news_message">{% autoescape off %}{{ item.message }}</p>{% endautoescape %}
+                <p class="news_message">{% autoescape off %}{{ item.message }}</p>{% endautoescape %}
             {% endcomment %}
+
         <p class="news_message">{{ item.message|linebreaksbr }}</p>
+
             {% comment %}
-            <p class="news_message">{{ item.message|linebreaks}}</p>
+                <p class="news_message">{{ item.message|linebreaks}}</p>
             {% endcomment %}
+
     {% comment %}
-    </div>
+        </div>
     {% endcomment %}
+
 {% endblock %}

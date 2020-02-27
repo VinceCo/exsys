@@ -2,7 +2,7 @@ from django.db import models
 from blog import models as blog_models
 
 class Report(blog_models.ItemCommonInfo):
-    subjet = models.CharField(max_length=100, default='Subjet')
+    pass
 
 
 class ReportItem(blog_models.Item):

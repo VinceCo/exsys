@@ -7,6 +7,12 @@
 
 /*-----------------------*/
 /* css for base.html */
+html {
+    /* stop moving the css because 
+     * of the * scrolling bar.  */
+    overflow-y: scroll;
+}
+
 body  
 {
     font-family: 'lmroman10';  /*'lmromanslant10';*/ /*'lmromandunh10';*/ /*'lmromandemi10';*/
@@ -14,6 +20,10 @@ body
     flex-direction: column; 
     min-height: 97vh;
     font-size: 25px;
+    background-color: #4db8ff;
+    background-color: #f2f2f2;
+    background-color: #e6e6e6;
+    background-color: #f2f2f2;
 }
 a {
     color: inherit;
@@ -41,10 +51,7 @@ nav
     display: flex;
     flex-direction: column;
     flex: 1; 
-    background-color: #ccf2ff;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-color: #808080;
+    background-color: #66ccff;
 }
 #nav_links
 {
@@ -69,6 +76,15 @@ footer
     height: 5vh;
 }
 
+.items_centered
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    justify-content: space-around;
+}
+
 
 /*-----------------------*/
 /* css for show.html */
@@ -86,6 +102,10 @@ footer
     justify-content: space-around;
 }
 
+.centered
+{
+    align-items: center;
+}
 
 /*-----------------------*/
 /* css for show_items.html */
@@ -109,7 +129,7 @@ footer
     padding-right: 10px;
     padding-left: 10px;
     width: 80%; 
-    background-color: #e6e6e6;
+    background-color: #ffffff;
 }
 .news_message
 {
@@ -171,3 +191,4 @@ footer
     align-items: center;
     margin-bottom: 5vh;
 }
+

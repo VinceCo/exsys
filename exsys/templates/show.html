@@ -4,16 +4,16 @@
 {# it should be Sketches's list or Stories's list #}
 	<h1 class="title">{% block title %}{% endblock %}</h1>
 	<div class="items_list">
-	    	{% for item in items_list %}
-                <div class={% block div_class %}{% endblock %}>
-                    {% block show_item %}	        
-                    {% endblock%}
-	    	    		{% comment %}	
-                        {# uncomment this for enable comments #}
-                        <a class="comment" href="{% url 'comment' item.title %}">Comment</a>
-                        {% endcomment %}
-                </div>
-	    	{% endfor %}
+        {% for item in items_list %}
+            <div class={% block div_class %}{% endblock %}>
+                {% block show_item %}	        
+                {% endblock%}
+                    {% comment %}	
+                    {# uncomment this for enable comments #}
+                    <a class="comment" href="{% url 'comment' item.title %}">Comment</a>
+                    {% endcomment %}
+            </div>
+        {% endfor %}
 		<div class="pagination">
 			<span class="step-links">
 				{% if items_list.has_previous %}

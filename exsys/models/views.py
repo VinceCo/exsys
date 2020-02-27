@@ -29,21 +29,4 @@ def model(request, id_title):
         if q_item_figure.exists():
             item_list.append(q_item_figure[0])
 
-#    items = [report_texts[k] for k in range(0, len(report_texts))]
-#    for fig in figures:
-#        items.append(fig)
-
-
-    # They must be a better way to have access to
-    # reporttext and figures
-#    for item in report_items:
-#        try:
-#            if item.reporttext is not None:
-#                item_list.append(item.reporttext)
-#        except:
-#            try:
-#                if item.figure is not None:
-#                    item_list.append(item.figure)
-#            except:
-#                pass
     return render(request, 'models/model.html', locals())
