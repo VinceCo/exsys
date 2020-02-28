@@ -192,3 +192,15 @@ footer
     margin-bottom: 5vh;
 }
 
+/*
+img 
+{
+    width : 500;
+    height: auto;
+}
+*/
+img
+{
+    max-width: 95%;
+    max-height: 95%;
+}

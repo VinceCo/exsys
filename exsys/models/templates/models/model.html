@@ -9,13 +9,12 @@
             {% for item in item_list %} 
                 {% with item|class_name as class_name %}
                     {% if class_name == 'ReportText' %}
-                        <p>It works</p>
+                    <p>{{ item.text|linebreaksbr }}</p>
                     {% elif class_name == 'Figure' %}
                         <img id="sketch_image" src="{{ item.fig.url }}"/> 
                     {% endif %}
                 {% endwith %}
             {% endfor %}
-            {% lorem 3 p %}
         </div>
     </div>
 {% endblock %}
